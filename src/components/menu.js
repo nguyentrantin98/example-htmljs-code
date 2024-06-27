@@ -207,7 +207,7 @@ export class MenuComponent extends EditableComponent {
                     Html.Instance.Li.ClassName("nav-header").Title(item.Label).End.Render();
                 }
                 else {
-                    var featureParam = window.location.pathname.replace("/", "").replace("-", " ");
+                    var featureParam = window.location.pathname.replace("/", "");
                     var check = item.InverseParent && item.InverseParent.length > 0;
                     Html.Instance.Li.ClassName("nav-item");
                     if (check) {
@@ -244,7 +244,7 @@ export class MenuComponent extends EditableComponent {
             * @param {Feature} item
             */
             (item, index) => {
-                var featureParam = Window.Location.PathName.Replace("/", "").Replace("-", " ");
+                var featureParam = Window.Location.PathName.Replace("/", "");
                 var check = item.InverseParent != null && item.InverseParent.Count > 0;
                 Html.Instance.Li.ClassName("nav-item");
                 if (check) {

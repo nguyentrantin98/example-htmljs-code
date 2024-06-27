@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "htmljs-code": "^8.0.13"
+    "htmljs-code": "^9.0.16",
+    "react-toastify": "^10.0.5"
   }
 }
