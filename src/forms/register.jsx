@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import { Client, Html, EditForm } from "htmljs-code";
 import { WebSocketClient } from "htmljs-code/lib/clients/websocketClient.js";
 import { KeyCodeEnum, RoleEnum } from "htmljs-code/lib/models/enum.js";
@@ -6,6 +7,7 @@ import { Toast } from "htmljs-code/lib/toast.js";
 import { MenuComponent } from "../components/menu.js";
 import "htmljs-code/lib/css/login.css";
 import { App } from "../app.jsx";
+import { LoginBL } from "./login.jsx";
 
 export class RegisterBL extends EditForm {
   static _instance;
@@ -41,12 +43,7 @@ export class RegisterBL extends EditForm {
                 style={{ display: "none" }}
               >
                 Đăng ký FAST WEB
-              </span>{" "}
-              <span
-                objname="jSubTitle"
-                className="login-form-subtitle"
-                style={{ display: "none" }}
-              />
+              </span>
               <div className="login-form-inputs login-class" objname="jInputs">
                 <div className="wrap-input username-wrap validate-input">
                   <input
@@ -81,97 +78,32 @@ export class RegisterBL extends EditForm {
                   <i objname="jBntShowPass" className="btn-show-pass" />
                 </div>
               </div>
-              <div className="login-form-sso-callback" state="loading">
-                <div className="sso-icon" />
-                <div className="sso-message">
-                  Đang <b>đăng nhập MISA AMIS</b>
-                </div>
-                <div className="sso-buttons">
-                  <a
-                    objname="jSSORegister"
-                    href="https://amis.misa.vn/register"
-                    style={{ display: "none" }}
-                    className="sso-button sso-button-register"
-                    res-key="SSO_Register"
-                  >
-                    Đăng ký công ty
-                  </a>
-                  <div style={{ height: "1px", width: "8px" }} />
-                  <a
-                    objname="jRelogin"
-                    href="/login"
-                    style={{ display: "none" }}
-                    className="sso-button sso-button-relogin"
-                    res-key="SSO_Relogin"
-                  >
-                    Đăng nhập lại
-                  </a>
-                </div>
-              </div>
               <div className="container-login-form-btn login-class">
                 <button data-name="btnRegister" className="login-form-btn">
                   Đăng ký
                 </button>
               </div>
-              <div className="login-method-container login-class">
-                <div className="sso-method-block">
-                  <div className="sso-title">
-                    <div className="sso-title-line" />
-                    <div className="sso-title-text">Hoặc đăng nhập với</div>
-                    <div className="sso-title-line" />
-                  </div>
-                  <div className="sso-method-list">
-                    <div
-                      className="sso-method-item"
-                      method="Google"
-                      title="Google"
-                    />
-                    <div
-                      className="sso-method-item"
-                      method="Apple"
-                      title="Apple"
-                    />
-                    <div
-                      className="sso-method-item"
-                      method="Microsoft"
-                      title="Microsoft"
-                    />
-                  </div>
-                </div>
-              </div>
               <div className="register-block login-class">
                 <span res-key="FormLogin_DontHaveAccount">
-                  Chưa có công ty?{" "}
+                  Chưa đã có công ty?
                 </span>
                 <a
                   objname="jRegister"
                   className="register-btn"
                   target="_blank"
                   res-key="FormLogin_Register"
+                  onClick={() => this.Login()}
                 >
-                  Đăng nhập{" "}
+                  Đăng nhập
                 </a>
               </div>
             </div>
-            <div
-              className="tenants-loading"
-              style={{ display: "none" }}
-              objname="jLoadingMark"
-            >
-              <div
-                className="tenants-loading-title"
-                res-key="TenantForm_TitleLoading"
-              >
-                Đang đăng nhập vào công ty
-              </div>
-              <div className="tenants-loading-name" objname="jLoadingName" />
-              <div className="tenants-loading-icon apui-waiting-more" />
-            </div>
             <div objname="jCopyRight" className="text-center copy-right-text">
-              Copyright © 2012 - 2024 MISA JSC
+              Copyright © 2012 - 2024 TINJS JSC
             </div>
           </div>
         </div>
+        <ToastContainer />
       </>
     );
     this.Meta.Components = [
@@ -187,9 +119,7 @@ export class RegisterBL extends EditForm {
 
   /** @type {RegisterBL} */
   static get Instance() {
-    if (!this._instance) {
-      this._instance = new RegisterBL();
-    }
+    this._instance = new RegisterBL();
     return this._instance;
   }
 
@@ -245,6 +175,10 @@ export class RegisterBL extends EditForm {
       return false;
     }
     return this.SubmitRegister();
+  }
+
+  async Login() {
+    LoginBL.Instance.Render();
   }
 
   SubmitRegister() {

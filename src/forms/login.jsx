@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import { Client, Html, EditForm } from "htmljs-code";
 import { WebSocketClient } from "htmljs-code/lib/clients/websocketClient.js";
 import { KeyCodeEnum, RoleEnum } from "htmljs-code/lib/models/enum.js";
@@ -7,7 +8,6 @@ import { MenuComponent } from "../components/menu.js";
 import { RegisterBL } from "./register.jsx";
 import "htmljs-code/lib/css/login.css";
 import { App } from "../app.jsx";
-
 export class LoginBL extends EditForm {
   static _instance;
   static _initApp;
@@ -34,7 +34,7 @@ export class LoginBL extends EditForm {
         <div className="container-login" view="login" bg={7}>
           <div className="wrap-login" type="login">
             <div className="login-form validate-form">
-              <span className="login-form-logo1" />{" "}
+              <span className="login-form-logo1" />
               <span
                 objname="jTitle"
                 className="login-form-title"
@@ -42,80 +42,24 @@ export class LoginBL extends EditForm {
                 style={{ display: "none" }}
               >
                 Đăng nhập FAST WEB
-              </span>{" "}
-              <span
-                objname="jSubTitle"
-                className="login-form-subtitle"
-                style={{ display: "none" }}
-              />
+              </span>
               <div className="login-form-inputs login-class" objname="jInputs">
                 <div className="wrap-input username-wrap validate-input">
                   <input
-                    objname="jUserName"
                     className="input ap-lg-input"
                     type="text"
-                    name="username"
-                    placeholder-key="FormLogin_UserPlaceholder"
+                    data-name="username"
                     placeholder="Số điện thoại/email"
-                  />{" "}
-                  <span className="error-info" res-key="FormLogin_UserNotEmpty">
-                    Tên đăng nhập không được để trống
-                  </span>
+                  />
                 </div>
                 <div className="wrap-input pass-wrap validate-input">
                   <input
-                    objname="jPassword"
                     className="input ap-lg-input"
                     type="password"
-                    name="pass"
-                    placeholder-key="FormLogin_PasswordPlaceholder"
+                    data-name="password"
                     placeholder="Mật khẩu"
-                  />{" "}
-                  <span
-                    className="error-info"
-                    res-key="FormLogin_PasswordNotEmpty"
-                  >
-                    Mật khẩu không được để trống
-                  </span>{" "}
+                  />
                   <i objname="jBntShowPass" className="btn-show-pass" />
-                </div>
-                <div
-                  objname="jCaptcha"
-                  className="captcha-container"
-                  style={{ display: "none" }}
-                >
-                  <div className="wrap-input captcha-wrap validate-input">
-                    <div className="captcha-box">
-                      <input
-                        objname="jCaptchaInput"
-                        className="input ap-lg-input"
-                        type="text"
-                        name="captcha"
-                        placeholder-key="FormLogin_CaptchaPlaceholder"
-                        placeholder="Mã xác nhận"
-                      />{" "}
-                      <img objname="jCaptchaImage" />{" "}
-                      <i
-                        objname="jBntCaptchaReload"
-                        className="btn-captcha-reload"
-                        title-key="FormLogin_CaptchaReloadTitle"
-                        title="Lấy mã khác"
-                      />
-                    </div>
-                    <span
-                      className="error-info"
-                      res-key="FormLogin_CaptchaNotEmpty"
-                    >
-                      Mã xác nhận không được để trống
-                    </span>
-                  </div>
-                </div>
-                <div
-                  objname="jTextLoginFail"
-                  className="text-login-fail"
-                  res-key="FormLogin_LoginFail"
-                >
-                  Tên đăng nhập hoặc mật khẩu không đúng
                 </div>
                 <div className="text-right" style={{ display: "flex" }}>
                   <a
@@ -129,67 +73,14 @@ export class LoginBL extends EditForm {
                   <div style={{ flex: 1 }} />
                 </div>
               </div>
-              <div className="login-form-sso-callback" state="loading">
-                <div className="sso-icon" />
-                <div className="sso-message">
-                  Đang <b>đăng nhập MISA AMIS</b>
-                </div>
-                <div className="sso-buttons">
-                  <a
-                    objname="jSSORegister"
-                    href="https://amis.misa.vn/register"
-                    style={{ display: "none" }}
-                    className="sso-button sso-button-register"
-                    res-key="SSO_Register"
-                  >
-                    Đăng ký công ty
-                  </a>
-                  <div style={{ height: "1px", width: "8px" }} />
-                  <a
-                    objname="jRelogin"
-                    href="/login"
-                    style={{ display: "none" }}
-                    className="sso-button sso-button-relogin"
-                    res-key="SSO_Relogin"
-                  >
-                    Đăng nhập lại
-                  </a>
-                </div>
-              </div>
               <div className="container-login-form-btn login-class">
                 <button data-name="btnLogin" className="login-form-btn">
                   Đăng nhập
                 </button>
               </div>
-              <div className="login-method-container login-class">
-                <div className="sso-method-block">
-                  <div className="sso-title">
-                    <div className="sso-title-line" />
-                    <div className="sso-title-text">Hoặc đăng nhập với</div>
-                    <div className="sso-title-line" />
-                  </div>
-                  <div className="sso-method-list">
-                  <div
-                      className="sso-method-item"
-                      method="Google"
-                      title="Google"
-                    />
-                    <div
-                      className="sso-method-item"
-                      method="Apple"
-                      title="Apple"
-                    />
-                    <div
-                      className="sso-method-item"
-                      method="Microsoft"
-                      title="Microsoft"
-                    />
-                  </div>
-                </div>
-              </div>
               <div className="register-block login-class">
                 <span res-key="FormLogin_DontHaveAccount">
-                  Chưa có công ty?{" "}
+                  Chưa có công ty?
                 </span>
                 <a
                   objname="jRegister"
@@ -198,29 +89,16 @@ export class LoginBL extends EditForm {
                   res-key="FormLogin_Register"
                   onClick={() => this.Register()}
                 >
-                  Đăng ký{" "}
+                  Đăng ký
                 </a>
               </div>
-            </div>
-            <div
-              className="tenants-loading"
-              style={{ display: "none" }}
-              objname="jLoadingMark"
-            >
-              <div
-                className="tenants-loading-title"
-                res-key="TenantForm_TitleLoading"
-              >
-                Đang đăng nhập vào công ty
-              </div>
-              <div className="tenants-loading-name" objname="jLoadingName" />
-              <div className="tenants-loading-icon apui-waiting-more" />
             </div>
             <div objname="jCopyRight" className="text-center copy-right-text">
               Copyright © 2012 - 2024 MISA JSC
             </div>
           </div>
-        </div>
+        </div >
+        <ToastContainer />
       </>
     );
     this.Meta.Components = [
@@ -231,14 +109,24 @@ export class LoginBL extends EditForm {
           await this.Login();
         },
       },
+      {
+        ComponentType: "Input",
+        FieldName: "username",
+        Label: "User Name",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      },
+      {
+        ComponentType: "Password",
+        Label: "Password",
+        FieldName: "password",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      }
     ];
   }
 
   /** @type {LoginBL} */
   static get Instance() {
-    if (!this._instance) {
-      this._instance = new LoginBL();
-    }
+    this._instance = new LoginBL();
     return this._instance;
   }
 
@@ -310,32 +198,31 @@ export class LoginBL extends EditForm {
         IsRawString: true,
         Method: "POST",
         AllowAnonymous: true,
-      })
-        .then((res) => {
-          if (!res) {
-            resolve(false);
-            return;
-          }
-          Client.Token = res.token;
-          login.UserName = "";
-          login.Password = "";
-          this.InitFCM();
-          if (this.SignedInHandler) {
-            this.SignedInHandler(Client.Token);
-          }
-          resolve(true);
-          this.Dispose();
-          App.Instance.RenderLayout()
-            .then(() => {
-              this.InitAppIfEmpty();
-            })
-            .finally(() => {
-              window.setTimeout(() => {
-                Toast.Success(`Xin chào ` + Client.Token.FullName);
-              }, 200);
-            });
-        })
-        .catch((e) => resolve(false));
+      }).then((res) => {
+        if (!res) {
+          resolve(false);
+          return;
+        }
+        Client.Token = res.token;
+        this.InitFCM();
+        if (this.SignedInHandler) {
+          this.SignedInHandler(Client.Token);
+        }
+        resolve(true);
+        this.Dispose();
+        App.Instance.RenderLayout()
+          .then(() => {
+            this.InitAppIfEmpty();
+          })
+          .finally(() => {
+            window.setTimeout(() => {
+              Toast.Success(`Hello ` + Client.Token.FullName);
+            }, 200);
+          });
+      }).catch(() => {
+        resolve(false);
+        Toast.Warning("Invalid username or password");
+      });
     });
     return tcs;
   }

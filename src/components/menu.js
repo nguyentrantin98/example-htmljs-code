@@ -54,8 +54,7 @@ export class MenuComponent extends EditableComponent {
             Client.Instance.SubmitAsync({
                 Url: `/api/feature/getMenu`,
                 IsRawString: true,
-                Method: "GET",
-                AllowAnonymous: true
+                Method: "GET"
             }).then(features => {
                 this.Features = features;
                 this.RenderMenu(features);
