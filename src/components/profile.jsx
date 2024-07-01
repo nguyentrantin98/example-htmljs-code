@@ -111,7 +111,7 @@ const Profile = () => {
                     className="loyalty-container logout-action flex items-center"
                     onClick={handleLogout}
                   >
-                    <div className="pointer mi mi-24 loyalty-icon mi-logout"></div>
+                    <div className="pointer fal fa-sign-out"></div>
                     <div className="loyalty-title">Đăng xuất</div>
                   </div>
                 </div>

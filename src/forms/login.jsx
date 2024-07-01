@@ -20,8 +20,9 @@ export class LoginBL extends EditForm {
     super("User");
     this.Entity = {
       AutoSignIn: true,
-      username: "johndoe",
-      password: "secret",
+      TanentCode: "dev",
+      UserName: "johndoe",
+      Password: "secret",
     };
     this.Name = "Login";
     this.Title = "Đăng nhập";
@@ -48,15 +49,22 @@ export class LoginBL extends EditForm {
                   <input
                     className="input ap-lg-input"
                     type="text"
-                    data-name="username"
+                    data-name="TanentCode"
+                    placeholder="Tanent Code"
+                  />
+                </div>
+                <div className="wrap-input username-wrap validate-input">
+                  <input
+                    className="input ap-lg-input"
+                    type="text"
+                    data-name="UserName"
                     placeholder="Số điện thoại/email"
                   />
                 </div>
                 <div className="wrap-input pass-wrap validate-input">
                   <input
                     className="input ap-lg-input"
-                    type="password"
-                    data-name="password"
+                    data-name="Password"
                     placeholder="Mật khẩu"
                   />
                   <i objname="jBntShowPass" className="btn-show-pass" />
@@ -111,14 +119,20 @@ export class LoginBL extends EditForm {
       },
       {
         ComponentType: "Input",
-        FieldName: "username",
+        FieldName: "UserName",
         Label: "User Name",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      },
+      {
+        ComponentType: "Input",
+        FieldName: "TanentCode",
+        Label: "Tanent Code",
         Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
       },
       {
         ComponentType: "Password",
         Label: "Password",
-        FieldName: "password",
+        FieldName: "Password",
         Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
       }
     ];

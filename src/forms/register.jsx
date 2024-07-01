@@ -35,45 +35,61 @@ export class RegisterBL extends EditForm {
         <div className="container-login" view="login" bg={7}>
           <div className="wrap-login" type="login">
             <div className="login-form validate-form">
-              <span className="login-form-logo1" />{" "}
-              <span
-                objname="jTitle"
-                className="login-form-title"
-                res-key="FormLogin_Title"
-                style={{ display: "none" }}
-              >
-                Đăng ký FAST WEB
-              </span>
+              <span className="login-form-logo1" />
               <div className="login-form-inputs login-class" objname="jInputs">
                 <div className="wrap-input username-wrap validate-input">
                   <input
-                    objname="jUserName"
                     className="input ap-lg-input"
                     type="text"
-                    name="username"
-                    placeholder-key="FormLogin_UserPlaceholder"
+                    data-name="CompanyName"
+                    placeholder="Company Name"
+                  />
+                </div>
+                <div className="wrap-input username-wrap validate-input">
+                  <input
+                    className="input ap-lg-input"
+                    type="text"
+                    data-name="TanentCode"
+                    placeholder="Tanent Code"
+                  />
+                </div>
+                <div className="wrap-input username-wrap validate-input">
+                  <input
+                    className="input ap-lg-input"
+                    type="text"
+                    data-name="TaxCode"
+                    placeholder="Tax code"
+                  />
+                </div>
+                <div className="wrap-input username-wrap validate-input">
+                  <input
+                    className="input ap-lg-input"
+                    type="text"
+                    data-name="Email"
+                    placeholder="Email"
+                  />
+                </div>
+                <div className="wrap-input username-wrap validate-input">
+                  <input
+                    className="input ap-lg-input"
+                    type="text"
+                    data-name="PhoneNumber"
+                    placeholder="Phone Number"
+                  />
+                </div>
+                <div className="wrap-input username-wrap validate-input">
+                  <input
+                    className="input ap-lg-input"
+                    type="text"
+                    data-name="UserName"
                     placeholder="Số điện thoại/email"
                   />
                 </div>
                 <div className="wrap-input pass-wrap validate-input">
                   <input
-                    objname="jPassword"
                     className="input ap-lg-input"
-                    type="password"
-                    name="pass"
-                    placeholder-key="FormLogin_PasswordPlaceholder"
+                    data-name="Password"
                     placeholder="Mật khẩu"
-                  />
-                  <i objname="jBntShowPass" className="btn-show-pass" />
-                </div>
-                <div className="wrap-input pass-wrap validate-input">
-                  <input
-                    objname="jPassword"
-                    className="input ap-lg-input"
-                    type="password"
-                    name="pass"
-                    placeholder-key="FormLogin_PasswordPlaceholder"
-                    placeholder="Xác nhận mật khẩu"
                   />
                   <i objname="jBntShowPass" className="btn-show-pass" />
                 </div>
@@ -114,6 +130,48 @@ export class RegisterBL extends EditForm {
           await this.Register();
         },
       },
+      {
+        ComponentType: "Input",
+        FieldName: "CompanyName",
+        Label: "Company Name",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      },
+      {
+        ComponentType: "Input",
+        FieldName: "Email",
+        Label: "Email",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      },
+      {
+        ComponentType: "Input",
+        FieldName: "TaxCode",
+        Label: "Tax Code",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      },
+      {
+        ComponentType: "Input",
+        FieldName: "TanentCode",
+        Label: "Tanent Code",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      },
+      {
+        ComponentType: "Input",
+        FieldName: "PhoneNumber",
+        Label: "Phone Number",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      },
+      {
+        ComponentType: "Input",
+        FieldName: "UserName",
+        Label: "User Name",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      },
+      {
+        ComponentType: "Password",
+        Label: "Password",
+        FieldName: "Password",
+        Validation: `[{"Rule": "required", "Message": "{0} is required"}]`
+      }
     ];
   }
 
